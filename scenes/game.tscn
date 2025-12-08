@@ -1,0 +1,279 @@
+[gd_scene load_steps=16 format=3 uid="uid://fevqrbd7p85p"]
+
+[ext_resource type="Script" uid="uid://cmutsemg2tvkc" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dc8q1fy6f8dmx" path="res://scenes/plataforma.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ct0h0s0m2d8yp" path="res://scenes/bloque.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://b8cwuari2861w" path="res://scenes/pelota.tscn" id="3_iywne"]
+[ext_resource type="Texture2D" uid="uid://gqprapq4a21a" path="res://assets/fondo/fondo-brick-breaker-2.png" id="3_p57ef"]
+[ext_resource type="FontFile" uid="uid://srqmsvg7hh6s" path="res://assets/fuentes/Micro_5/Micro5-Regular.ttf" id="3_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://b0uso8ql80wxc" path="res://assets/musica/beat_brick_breaker.wav" id="4_p57ef"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gee14"]
+font = ExtResource("3_u5sy4")
+font_size = 30
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tnpc"]
+font = ExtResource("3_u5sy4")
+font_size = 30
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbhrr"]
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iywne"]
+font_size = 25
+
+[sub_resource type="Animation" id="Animation_iywne"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("resetear:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("resetear:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+resource_name = "pulse"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("resetear:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.16666667, -0.033333343, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("resetear:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.16666667, -0.033333343, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
+_data = {
+&"RESET": SubResource("Animation_iywne"),
+&"pulse": SubResource("Animation_lbhrr")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(1163, 10)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_lbhrr")
+Ball = ExtResource("3_iywne")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1164.0
+offset_bottom = 646.0
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="score" type="Label" parent="Control/CanvasLayer"]
+offset_left = 1096.0
+offset_top = 57.0
+offset_right = 1172.0
+offset_bottom = 88.0
+scale = Vector2(1.498342, 1.5013821)
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_gee14")
+
+[node name="lives" type="Label" parent="Control/CanvasLayer"]
+offset_left = 1096.0
+offset_top = 101.00001
+offset_right = 1167.0
+offset_bottom = 132.0
+scale = Vector2(1.498342, 1.5013821)
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_0tnpc")
+
+[node name="GameOver" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.75
+offset_top = -173.25
+offset_right = 235.75
+offset_bottom = 173.25
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="gameOverLabel" type="Label" parent="Control/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_right = 42.5
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 27
+text = "Game over"
+label_settings = SubResource("LabelSettings_lbhrr")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Control/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 81.25
+offset_right = 49.0
+offset_bottom = 136.25
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 27
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_lbhrr")
+horizontal_alignment = 1
+
+[node name="resetear" type="Label" parent="Control/GameOver"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -378.5
+offset_top = -55.0
+offset_right = 378.5
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(380, 28)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 27
+text = "Preciona cualquier boton para resetear"
+label_settings = SubResource("LabelSettings_iywne")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/GameOver"]
+libraries = {
+&"": SubResource("AnimationLibrary_p57ef")
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_p57ef")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_p57ef")
+volume_db = -20.194
+autoplay = true
+
+[node name="plataforma" parent="." instance=ExtResource("1_lnu2h")]
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bloque" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(62, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="bloque2" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(166.00002, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="bloque3" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(271, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="bloque4" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(376.00003, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="bloque5" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(481.00003, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="bloque6" parent="HBoxContainer" instance=ExtResource("2_lbhrr")]
+position = Vector2(586, 1)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="muro-arriba" type="StaticBody2D" parent="."]
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="muro-arriba"]
+position = Vector2(583.43567, 5)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="muro-abajo" type="StaticBody2D" parent="." groups=["kill"]]
+position = Vector2(4, 636)
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="muro-abajo"]
+position = Vector2(573.75684, 103.21922)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="muro-derecha" type="StaticBody2D" parent="."]
+position = Vector2(1152, 3)
+rotation = 1.5707964
+scale = Vector2(1.1729709, 1.1916405)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="muro-derecha"]
+position = Vector2(329.83545, -175.1464)
+scale = Vector2(0.5594176, 1.2181166)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="muro-izquierda" type="StaticBody2D" parent="."]
+position = Vector2(7, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="muro-izquierda"]
+position = Vector2(388.3297, -0.56082153)
+scale = Vector2(0.68979734, 1.229943)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="ballSpawnPoint" type="Marker2D" parent="." groups=["ballSpawnPoint"]]
+position = Vector2(61, 0)

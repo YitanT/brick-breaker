@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8cwuari2861w"]
+
+[ext_resource type="Texture2D" uid="uid://blo600thet0ix" path="res://assets/objetos/pelota.png" id="1_oq35t"]
+[ext_resource type="Script" uid="uid://blkapwcxb1t7k" path="res://scripts/pelota.gd" id="1_w0e16"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w0e16"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0e16"]
+radius = 26.0
+
+[node name="pelota" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_w0e16")
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_w0e16")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(553, 471)
+texture = ExtResource("1_oq35t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(553, 471)
+shape = SubResource("CircleShape2D_w0e16")
