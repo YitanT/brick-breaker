@@ -6,4 +6,4 @@ func _on_inicio_pressed() -> void:
 
 
 func _on_salir_pressed() -> void:
-	get_tree().queue_quit()
+	get_tree().quit()

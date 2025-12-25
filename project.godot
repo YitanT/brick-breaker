@@ -16,7 +16,7 @@ run/main_scene="uid://bwwsc3o1iiq4x"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.096204825, 0.09620472, 0.09620472, 1)
 boot_splash/fullsize=false
-boot_splash/image="uid://cmttp1dutkvr4"
+boot_splash/image="uid://cwpqieb7hbwl1"
 config/icon="uid://b1rlqrlxt0ttq"
 boot_splash/minimum_display_time=2000
 
@@ -24,7 +24,7 @@ boot_splash/minimum_display_time=2000
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
-window/size/mode=2
+window/size/mode=3
 
 [input]
 

@@ -54,11 +54,11 @@ jobs:
           cd $PROJECT_PATH
           ls
           godot -v --headless --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
-      - name: Mac Build
-        run: |
-          cd $PROJECT_PATH
-          ls
-          godot -v --headless --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
+          #      - name: Mac Build
+          # run: |
+          # cd $PROJECT_PATH
+          #ls
+          #godot -v --headless --export-release "Mac OSX" ../build/mac/$EXPORT_NAME.zip
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -88,4 +88,4 @@ jobs:
           butler push web $ITCH_USER/$ITCH_GAME:html5 --userversion $GITHUB_REF_NAME
           butler push windows $ITCH_USER/$ITCH_GAME:windows --userversion $GITHUB_REF_NAME
           butler push linux $ITCH_USER/$ITCH_GAME:linux --userversion $GITHUB_REF_NAME
-          butler push mac $ITCH_USER/$ITCH_GAME:mac --userversion $GITHUB_REF_NAME
+          #          butler push mac $ITCH_USER/$ITCH_GAME:mac --userversion $GITHUB_REF_NAME

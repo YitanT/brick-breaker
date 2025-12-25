@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwwsc3o1iiq4x"]
 
 [ext_resource type="Script" uid="uid://doj8fml0nqdpk" path="res://scripts/menu.gd" id="1_vjb58"]
-[ext_resource type="Texture2D" uid="uid://gqprapq4a21a" path="res://assets/fondo/fondo-brick-breaker-2.png" id="2_vjb58"]
+[ext_resource type="Texture2D" uid="uid://i31vqvqcpi8s" path="res://assets/fondo/fondo-brick-breaker-2.png" id="2_vjb58"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_con2f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ytvr"]
 
 [node name="Menu" type="Node2D"]
+scale = Vector2(1.183928, 1.1863023)
 script = ExtResource("1_vjb58")
 
 [node name="Control" type="Control" parent="."]
